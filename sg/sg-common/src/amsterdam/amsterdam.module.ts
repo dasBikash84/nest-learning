@@ -7,7 +7,6 @@ import { AmsterdamCalanderService } from './amsterdam-calander.service';
 
 @Module({
   imports:[
-    mongoCon,
     amsListingFeature,
     amsReviewFeature,
     amsCalendarFeature
