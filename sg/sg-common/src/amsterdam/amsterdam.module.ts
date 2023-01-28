@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { amsCalendarFeature, amsListingFeature, amsReviewFeature, mongoCon } from 'src/messages/db/mongodb.typeorm';
+import { amsCalendarFeature, amsListingFeature, amsReviewFeature, mongoCon } from 'src/db/mongodb.typeorm';
 import { AmsterdamReveiwService } from './amsterdam-review.service';
 import { AmsterdamController } from './amsterdam.controller';
 import { AmsterdamListingService as AmsterdamListingService } from './amsterdam-listing.service';

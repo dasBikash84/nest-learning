@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AmsterdamCalendar } from 'src/messages/db/entities/amsterdam-calendar.entity';
-import { AmsterdamSumListing } from 'src/messages/db/entities/amsterdam-listing.entity';
-import { AmsterdamReview } from 'src/messages/db/entities/amsterdam-reviews.entity';
+import { AmsterdamCalendar } from 'src/db/entities/amsterdam-calendar.entity';
+import { AmsterdamSumListing } from 'src/db/entities/amsterdam-listing.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
