@@ -20,11 +20,20 @@ export class UserService {
   }
 
   async findOne(id: string) {
-    return this.repo.findOneBy(new ObjectID(id));
+    try {
+      return this.repo.findOneBy(new ObjectID(id));
+    } catch (error) {
+      throw new NotFoundException(error.message || 'user not found');
+    }
+    
   }
 
-  find(email: string) {
-    return this.repo.find({ where: {email} });
+  async find(email: string) {
+    return await this.repo.find({ where: {email} });
+  }
+
+  async findAllUsers(){
+    return await this.repo.find({});
   }
 
   async update(id: string, attrs: Partial<User>) {

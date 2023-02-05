@@ -1,3 +1,4 @@
+import { Expose, Transform } from "class-transformer";
 import { Column, Entity, JoinColumn, ObjectIdColumn, OneToMany, PrimaryColumn } from "typeorm";
 import { AmsterdamCalendar } from "./amsterdam-calendar.entity";
 import { AmsterdamReview } from "./amsterdam-reviews.entity";
@@ -6,6 +7,7 @@ import { AmsterdamReview } from "./amsterdam-reviews.entity";
 @Entity('amsterdamListing')
 export class AmsterdamSumListing{
   @ObjectIdColumn()
+  @Transform(({ value }) => value.toString(), { toPlainOnly: true })
   _id: string;
 
   @PrimaryColumn()
@@ -215,6 +217,11 @@ export class AmsterdamSumListing{
   @Column({name:'reviews_per_month',type:'double'})
   public reviews_per_month: number;
 
+  @Transform(({ value }) => value.map(v => v._id.toString()), { toPlainOnly: true })
+  @Expose({name:'review_db_ids'})
   public allReviews:AmsterdamReview[];
+
+  @Transform(({ value }) => value.map(v => v._id.toString()), { toPlainOnly: true })
+  @Expose({name:'calander_db_ids'})
   public allCalendarEntries:AmsterdamCalendar[]
 }

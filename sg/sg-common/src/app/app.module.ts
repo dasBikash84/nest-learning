@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AmsterdamModule } from 'src/amsterdam/amsterdam.module';
 import { mongoCon } from 'src/db/mongodb.typeorm';
 import { UserModule } from 'src/user/user.module';
@@ -7,6 +8,7 @@ import { UserModule } from 'src/user/user.module';
   imports:[
     mongoCon,
     AmsterdamModule,
-    UserModule
+    UserModule,
+    ConfigModule.forRoot()
   ]})
 export class AppModule {}

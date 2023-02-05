@@ -1,9 +1,11 @@
+import { Transform } from "class-transformer";
 import { Column, Entity, JoinColumn, ManyToOne, ObjectIdColumn, OneToOne, PrimaryColumn } from "typeorm";
 import { AmsterdamSumListing as AmsterdamSumListing } from "./amsterdam-listing.entity";
 
 @Entity('amsterdamCalendar')
 export class AmsterdamCalendar{
   @ObjectIdColumn()
+  @Transform(({ value }) => value.toString(), { toPlainOnly: true })
   _id: string;
 
   @Column()

@@ -1,9 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
+import { ClassSerializerInterceptor, Controller, Get, UseGuards, UseInterceptors } from '@nestjs/common';
+import { AuthGuard } from 'src/guards/auth.guard';
 import { AmsterdamCalanderService } from './amsterdam-calander.service';
 import { AmsterdamListingService } from './amsterdam-listing.service';
 import { AmsterdamReveiwService } from './amsterdam-review.service';
 
 @Controller('ams')
+@UseGuards(AuthGuard)
 export class AmsterdamController {
 
   constructor(

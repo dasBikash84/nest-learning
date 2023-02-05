@@ -1,9 +1,11 @@
+import { Exclude, Expose, Transform } from "class-transformer";
 import { Column, Entity, JoinColumn, ManyToOne, ObjectIdColumn, OneToOne, PrimaryColumn } from "typeorm";
 import { AmsterdamSumListing as AmsterdamSumListing } from "./amsterdam-listing.entity";
 
 @Entity('amsterdamReviews')
 export class AmsterdamReview{
   @ObjectIdColumn()
+  @Transform(({ value }) => value.toString(), { toPlainOnly: true })
   _id: string;
 
   @PrimaryColumn()
@@ -24,5 +26,7 @@ export class AmsterdamReview{
   @Column()
   public listing_id: string;
 
+  @Transform(({ value }) => value._id.toString(), { toPlainOnly: true })
+  @Expose({name:'listing_mongo_id'})
   public listing: AmsterdamSumListing
 }

@@ -1,10 +1,10 @@
+import { Exclude, Transform } from 'class-transformer';
 import {
   AfterInsert,
   AfterRemove,
   AfterUpdate,
   Entity,
   Column,
-  PrimaryGeneratedColumn,
   ObjectIdColumn,
   ObjectID
 } from 'typeorm';
@@ -12,12 +12,14 @@ import {
 @Entity()
 export class User {
   @ObjectIdColumn()
+  @Transform(({ value }) => value.toString(), { toPlainOnly: true })
   id: ObjectID;
 
   @Column()
   email: string;
 
   @Column()
+  // @Exclude({toPlainOnly:true})
   password: string;
 
   @AfterInsert()
